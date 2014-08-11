@@ -12,6 +12,8 @@
 
 @property (nonatomic,strong) IBOutlet UITextField *supervisorName;
 @property (nonatomic,strong) IBOutlet UITextField *shopName;
+@property (nonatomic,strong) IBOutlet UIButton *frontIDCard;
+@property (nonatomic,strong) IBOutlet UIButton *backIDCard;
 
 
 @end
