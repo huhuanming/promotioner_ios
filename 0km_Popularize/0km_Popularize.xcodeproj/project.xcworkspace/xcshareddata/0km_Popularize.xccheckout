@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>75C36645-557F-43F7-87CF-A2C05B1717F2</string>
+	<key>IDESourceControlProjectName</key>
+	<string>0km_Popularize</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EFA63F03-E3C5-439F-B27F-A7BB8E7A4A2A</key>
+		<string>https://github.com/huhuanming/promotioner_ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>0km_Popularize/0km_Popularize.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EFA63F03-E3C5-439F-B27F-A7BB8E7A4A2A</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/huhuanming/promotioner_ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EFA63F03-E3C5-439F-B27F-A7BB8E7A4A2A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EFA63F03-E3C5-439F-B27F-A7BB8E7A4A2A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>promotioner_ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
