@@ -155,13 +155,13 @@
 
           
           <div class="method-source-code" id="2Fping-source">
-            <pre><span class="ruby-comment"># File app/apis/restfuls/v1/ping.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/apis/restfuls/v1/ping_api.rb, line 20</span>
 <span class="ruby-identifier">get</span> <span class="ruby-string">&#39;/ping&#39;</span> <span class="ruby-keyword">do</span> 
   <span class="ruby-identifier">data</span> = {
     <span class="ruby-string">&#39;api_version&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&#39;v1&#39;</span>,
     <span class="ruby-string">&#39;time&#39;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>
   }
-  <span class="ruby-identifier">present</span><span class="ruby-value">:ping</span>, <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_json</span>
+  <span class="ruby-identifier">present</span> <span class="ruby-identifier">data</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
           
