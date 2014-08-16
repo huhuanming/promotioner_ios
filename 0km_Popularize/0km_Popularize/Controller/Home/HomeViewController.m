@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.navigationBar setHidden:NO];
     [self setTitle:@"零公里(地推版)"];
     [self addNewSupervisorButton];
 }

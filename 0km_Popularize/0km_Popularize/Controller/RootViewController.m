@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import <MAMapKit/MAMapKit.h>
 
 @interface RootViewController ()
 
