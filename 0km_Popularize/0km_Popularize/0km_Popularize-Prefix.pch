@@ -17,4 +17,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "RootViewController.h"
+    #import <RestKit.h>
+
 #endif
