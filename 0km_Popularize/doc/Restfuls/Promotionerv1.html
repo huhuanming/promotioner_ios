@@ -161,7 +161,7 @@
 
 <h4 id="method-i-promotioners-label-POST">POST<span><a href="#method-i-promotioners-label-POST">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
 
-<pre>/promotioner/login</pre>
+<pre>/promotioners/login</pre>
 
 <h4 id="method-i-promotioners-label-Params">Params<span><a href="#method-i-promotioners-label-Params">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
 
@@ -197,37 +197,7 @@
 
           
           <div class="method-source-code" id="promotioners-source">
-            <pre><span class="ruby-comment"># File app/apis/restfuls/v1/promotioner_api.rb, line 48</span>
-<span class="ruby-identifier">resource</span> <span class="ruby-value">:promotioners</span> <span class="ruby-keyword">do</span>
-        
-        <span class="ruby-identifier">desc</span> <span class="ruby-string">&quot;Create a promotioner account&quot;</span>
-        <span class="ruby-identifier">post</span> <span class="ruby-keyword">do</span>      
-                <span class="ruby-identifier">authenticate_promotioner!</span>
-                <span class="ruby-identifier">present</span><span class="ruby-value">:p_token</span>, <span class="ruby-identifier">token</span>
-        <span class="ruby-keyword">end</span>
-
-        <span class="ruby-identifier">desc</span> <span class="ruby-string">&quot;Login promotioner account&quot;</span>
-        <span class="ruby-identifier">post</span> <span class="ruby-string">&#39;/login&#39;</span> <span class="ruby-keyword">do</span>
-                <span class="ruby-identifier">login_promotioner!</span>
-                <span class="ruby-identifier">promotioner</span> = <span class="ruby-constant">Promotioner</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-value">:phone_number</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:username</span>])
-                <span class="ruby-identifier">promotioner_token</span> = <span class="ruby-constant">PromotionerToken</span>.<span class="ruby-identifier">find_by</span>(<span class="ruby-value">:promotioner_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">promotioner</span>.<span class="ruby-identifier">id</span>)
-                <span class="ruby-identifier">promotioner_token</span> = <span class="ruby-constant">PromotionerToken</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">promotioner_token</span>.<span class="ruby-identifier">nil?</span>
-
-                <span class="ruby-identifier">token</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">uuid</span>
-                <span class="ruby-identifier">key</span> = <span class="ruby-constant">SecureRandom</span>.<span class="ruby-identifier">urlsafe_base64</span>
-                <span class="ruby-identifier">promotioner_token</span>.<span class="ruby-identifier">p_token</span> = <span class="ruby-identifier">token</span>
-                <span class="ruby-identifier">promotioner_token</span>.<span class="ruby-identifier">p_key</span> = <span class="ruby-identifier">key</span>
-                <span class="ruby-identifier">promotioner_token</span>.<span class="ruby-identifier">promotioner_id</span> = <span class="ruby-identifier">promotioner</span>.<span class="ruby-identifier">id</span>
-                <span class="ruby-identifier">error!</span>(<span class="ruby-string">&quot;Server is not work well&quot;</span>, <span class="ruby-value">500</span>) <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">promotioner_token</span>.<span class="ruby-identifier">save</span>
-
-                <span class="ruby-identifier">access_token</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
-                <span class="ruby-identifier">access_token</span>[<span class="ruby-string">&quot;token&quot;</span>] = <span class="ruby-identifier">token</span>
-                <span class="ruby-identifier">access_token</span>[<span class="ruby-string">&quot;key&quot;</span>] = <span class="ruby-identifier">key</span>
-                <span class="ruby-identifier">present</span> <span class="ruby-identifier">access_token</span>
-        <span class="ruby-keyword">end</span>
-
-
-<span class="ruby-keyword">end</span></pre>
+            
           </div>
           
         </div>
