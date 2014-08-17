@@ -10,4 +10,7 @@
 
 @implementation LoginProduct
 
+@synthesize token;
+@synthesize key;
+
 @end

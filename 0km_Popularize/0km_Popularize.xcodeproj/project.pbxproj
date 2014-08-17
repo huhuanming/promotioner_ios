@@ -34,6 +34,7 @@
 		A05D921E1994CDAE000CA97B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A05D921D1994CDAE000CA97B /* RootViewController.m */; };
 		A0746E481994EA670041994D /* EditSupervisorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0746E471994EA670041994D /* EditSupervisorViewController.m */; };
 		A0ED05F5199F5D3400DDC762 /* LoginProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ED05F4199F5D3400DDC762 /* LoginProduct.m */; };
+		A0ED05F819A067CC00DDC762 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ED05F719A067CC00DDC762 /* Article.m */; };
 		DFC41F74C9764F5C974DFAC4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BBBBF7AE1418EABED9E1B /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,8 @@
 		A0746E471994EA670041994D /* EditSupervisorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSupervisorViewController.m; sourceTree = "<group>"; };
 		A0ED05F3199F5D3400DDC762 /* LoginProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginProduct.h; sourceTree = "<group>"; };
 		A0ED05F4199F5D3400DDC762 /* LoginProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProduct.m; sourceTree = "<group>"; };
+		A0ED05F619A067CC00DDC762 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
+		A0ED05F719A067CC00DDC762 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
 		CE0BBBBF7AE1418EABED9E1B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -291,6 +294,8 @@
 			children = (
 				A0ED05F3199F5D3400DDC762 /* LoginProduct.h */,
 				A0ED05F4199F5D3400DDC762 /* LoginProduct.m */,
+				A0ED05F619A067CC00DDC762 /* Article.h */,
+				A0ED05F719A067CC00DDC762 /* Article.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -427,6 +432,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0ED05F819A067CC00DDC762 /* Article.m in Sources */,
 				A05D91F41994CB1F000CA97B /* AppDelegate.m in Sources */,
 				A05D91F01994CB1F000CA97B /* main.m in Sources */,
 				A0ED05F5199F5D3400DDC762 /* LoginProduct.m in Sources */,

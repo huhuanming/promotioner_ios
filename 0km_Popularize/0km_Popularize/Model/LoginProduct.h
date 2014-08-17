@@ -10,4 +10,8 @@
 
 @interface LoginProduct : NSObject
 
+@property (nonatomic, copy) NSString *token;
+@property (nonatomic, copy) NSString *key;
+
+
 @end

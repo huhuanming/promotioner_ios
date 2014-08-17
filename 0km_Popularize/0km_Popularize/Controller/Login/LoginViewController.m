@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import "LoginProduct.h"
+#import "Article.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -48,6 +50,7 @@
     [self addLoginBackground];
     [self.view addSubview:self.phoneNum];
     [self.view addSubview:self.passWord];
+    [self.view addSubview:self.login];
 }
 
 //UI控件
@@ -111,7 +114,52 @@
     return _passWord;
 }
 
+- (UIButton *)login
+{
+    if (!_login) {
+        _login = [[UIButton alloc] initWithFrame:CGRectMake(30, loginBackground.frame.size.height + loginBackground.frame.origin.y + 40, 260, 40)];
+        [_login setBackgroundColor:[UIColor colorWithRed:0.19 green:0.68 blue:0.9 alpha:1]];
+        [_login addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+        [_login setTitle:@"登陆" forState:UIControlStateNormal];
+        [_login setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    return _login;
+}
+
 //UI控件 完
+
+- (IBAction)login:(id)sender
+{
+    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[LoginProduct class]];
+    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(201);
+    [contactMapping addAttributeMappingsFromDictionary:@{
+                                                         @"token": @"token",
+                                                         @"key": @"key"
+                                                         }];
+    RKResponseDescriptor *contactDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:contactMapping method:RKRequestMethodAny pathPattern:@"/v1/promotioners/login" keyPath:nil statusCodes:statusCodes];
+    NSURL *url = [NSURL URLWithString:@"http://www.0km.me:9000"];
+    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:url];
+    [manager addResponseDescriptor:contactDescriptor];
+    NSMutableDictionary *parma = [[NSMutableDictionary alloc] init];
+    [parma setValue:@"1212" forKey:@"username"];
+    [parma setValue:@"1212" forKey:@"password"];
+    NSLog(@"%@",parma);
+    [manager postObject:nil path:@"/v1/promotioners/login" parameters:parma.copy success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+        NSLog(@"The public timeline Tweets: %@", result);
+        LoginProduct *test = result.array.lastObject;
+        NSLog(@"%@",test);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error);
+    }];
+    
+    
+//    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+//        NSLog(@"The public timeline Tweets: %@", result.array.lastObject);
+//        LoginProduct *test = result.array.lastObject;
+//        NSLog(@"%@",test);
+//    } failure:nil];
+//    [operation start];
+}
 
 #pragma mark - UITextFieldDelegate
 
