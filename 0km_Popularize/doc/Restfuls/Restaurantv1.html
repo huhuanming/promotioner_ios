@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Restfuls::Restaurantv1 - RDoc Documentation</title>
+
+<link href="../fonts.css" rel="stylesheet">
+<link href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script src="../js/jquery.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/search_index.js"></script>
+<script src="../js/search.js"></script>
+<script src="../js/searcher.js"></script>
+<script src="../js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="../index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="../table_of_contents.html#pages">Pages</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link">Grape::API
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-restaurants">#restaurants</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Restfuls::Restaurantv1">
+  <h1 id="class-Restfuls::Restaurantv1" class="class">
+    class Restfuls::Restaurantv1
+  </h1>
+
+  <section class="description">
+    
+<p>本接口用于地推帐号的增删查改以及登录、充值密码等操作</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-restaurants" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">restaurants</span><span
+            class="method-args">()</span>
+          
+          <!-- <span class="method-click-advice">click to toggle source</span> -->
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>餐馆接口</p>
+
+<h1 id="method-i-restaurants-label-%E6%93%8D%E4%BD%9C">操作<span><a href="#method-i-restaurants-label-%E6%93%8D%E4%BD%9C">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+<ul><li>
+<p>创建餐馆</p>
+</li></ul>
+
+<h2 id="method-i-restaurants-label-%E5%88%9B%E5%BB%BA%E9%A4%90%E9%A6%86">创建餐馆<span><a href="#method-i-restaurants-label-%E5%88%9B%E5%BB%BA%E9%A4%90%E9%A6%86">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<pre>创建一家餐馆，并生成一个商家帐号，商家登录帐号为他填写的手机号，登录密码为手机号后四位</pre>
+
+<h4 id="method-i-restaurants-label-POST">POST<span><a href="#method-i-restaurants-label-POST">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<pre>/restaurants</pre>
+
+<h4 id="method-i-restaurants-label-Params">Params<span><a href="#method-i-restaurants-label-Params">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<h6 id="method-i-restaurants-label-access_token%3A">access_token:<span><a href="#method-i-restaurants-label-access_token%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>地推人员 access_token</pre>
+
+<h6 id="method-i-restaurants-label-restaurant_name%3A">restaurant_name:<span><a href="#method-i-restaurants-label-restaurant_name%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆名称</pre>
+
+<h6 id="method-i-restaurants-label-back_account%3A">back_account:<span><a href="#method-i-restaurants-label-back_account%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>银行帐号</pre>
+
+<h6 id="method-i-restaurants-label-phone_number%3A">phone_number:<span><a href="#method-i-restaurants-label-phone_number%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆联系电话（餐馆经营者手机号码）</pre>
+
+<h6 id="method-i-restaurants-label-linsece%3A">linsece:<span><a href="#method-i-restaurants-label-linsece%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆的营业执照</pre>
+
+<h6 id="method-i-restaurants-label-id_card_front%3A">id_card_front:<span><a href="#method-i-restaurants-label-id_card_front%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>身份证正面照片</pre>
+
+<h6 id="method-i-restaurants-label-id_card_reverse%3A">id_card_reverse:<span><a href="#method-i-restaurants-label-id_card_reverse%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>身份证背面照片</pre>
+
+<h6 id="method-i-restaurants-label-address%3A">address:<span><a href="#method-i-restaurants-label-address%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆地址</pre>
+
+<h6 id="method-i-restaurants-label-longitude%3A">longitude:<span><a href="#method-i-restaurants-label-longitude%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆坐标经度</pre>
+
+<h6 id="method-i-restaurants-label-latitude%3A">latitude:<span><a href="#method-i-restaurants-label-latitude%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆坐标经度</pre>
+
+<h6 id="method-i-restaurants-label-coordinate_x1%3A">coordinate_x1:<span><a href="#method-i-restaurants-label-coordinate_x1%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆x1坐标</pre>
+
+<h6 id="method-i-restaurants-label-coordinate_x2%3A">coordinate_x2:<span><a href="#method-i-restaurants-label-coordinate_x2%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆x2坐标</pre>
+
+<h6 id="method-i-restaurants-label-coordinate_y1%3A">coordinate_y1:<span><a href="#method-i-restaurants-label-coordinate_y1%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆y1坐标</pre>
+
+<h6 id="method-i-restaurants-label-coordinate_y2%3A">coordinate_y2:<span><a href="#method-i-restaurants-label-coordinate_y2%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆y2坐标</pre>
+
+<h4 id="method-i-restaurants-label-Response+Status+Code">Response Status Code<span><a href="#method-i-restaurants-label-Response+Status+Code">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<pre>201</pre>
+
+<h4 id="method-i-restaurants-label-Response+Body">Response Body<span><a href="#method-i-restaurants-label-Response+Body">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<h6 id="method-i-restaurants-label-response_status%3A">response_status:<span><a href="#method-i-restaurants-label-response_status%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>&quot;successed to create a restaurant&quot;(字符串)</pre>
+
+<h4 id="method-i-restaurants-label-Error+Status+Code">Error Status Code<span><a href="#method-i-restaurants-label-Error+Status+Code">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<h6 id="method-i-restaurants-label-401%3A">401:<span><a href="#method-i-restaurants-label-401%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>地推帐号验证错误，AccessToken 过期、无效</pre>
+
+<h6 id="method-i-restaurants-label-404%3A">404:<span><a href="#method-i-restaurants-label-404%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>地推帐号 AccessToken 不存在</pre>
+
+<h6 id="method-i-restaurants-label-501%3A">501:<span><a href="#method-i-restaurants-label-501%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>数据存储错误</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="restaurants-source">
+            
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
