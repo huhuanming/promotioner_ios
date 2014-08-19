@@ -26,11 +26,16 @@
     UIPickerView *distancePicker;
     double distance;  //存的商家确定的距离
     NSDictionary *xy;    //存的商家确定范围后的四个点
+    CLLocationCoordinate2D point;
     NSArray *pickerSelectionData;
     UIView *distancePickerBackground;
+    UILabel *distanceLabelofdistanceButton;
+    UILabel *phoneNumberLabel;
     
     UILabel *frontSide;
     UILabel *backSide;
+    
+    UIButton *allComplete;
         
     int flag;    //判断是照的正面，反面，还是营业执照， 1是正面，2是反面，3是营业执照
 }
@@ -60,7 +65,11 @@
 - (void)addWholeScrollView
 {
     wholeScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, 580)];
-    [wholeScrollView setContentSize:CGSizeMake(self.screenWidth, 800)];
+    if (self.screenHeight == 460) {
+        [wholeScrollView setContentSize:CGSizeMake(self.screenWidth, 860)];
+    }else{
+        [wholeScrollView setContentSize:CGSizeMake(self.screenWidth, 800)];
+    }
     [wholeScrollView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:wholeScrollView];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignKeyboard:)];
@@ -78,6 +87,8 @@
     [self addBank];
     [self addLocation];
     [self addDistance];
+    [self addPhoneNumber];
+    [self addAllComplete];
 }
 
 - (void)addName
@@ -142,6 +153,26 @@
     [distanceLabel setTextColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.6 alpha:1]];
     [wholeScrollView addSubview:distanceLabel];
     [wholeScrollView addSubview:self.distanceButton];
+}
+
+- (void)addPhoneNumber
+{
+    phoneNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _distanceButton.frame.origin.y + _distanceButton.frame.size.height, 150, 30)];
+    [phoneNumberLabel setText:@"送餐半径"];
+    [phoneNumberLabel setFont:[UIFont systemFontOfSize:14]];
+    [phoneNumberLabel setTextColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.6 alpha:1]];
+    [wholeScrollView addSubview:phoneNumberLabel];
+    [wholeScrollView addSubview:self.phoneNumber];
+}
+
+- (void)addAllComplete
+{
+    allComplete = [[UIButton alloc] initWithFrame:CGRectMake(10, _phoneNumber.frame.origin.y + _phoneNumber.frame.size.height + 10, 300, 40)];
+    [allComplete.layer setCornerRadius:3];
+    [allComplete setBackgroundColor:[UIColor colorWithRed:0.19 green:0.68 blue:0.89 alpha:1]];
+    [allComplete setTitle:@"完成创建" forState:UIControlStateNormal];
+    [allComplete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [wholeScrollView addSubview:allComplete];
 }
 
 - (void)addNameShadow
@@ -307,8 +338,34 @@
         [tap setNumberOfTapsRequired:1];
         tap.delegate = self;
         [_distanceButton addGestureRecognizer:tap];
+        distanceLabelofdistanceButton = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _distanceButton.frame.size.width, _distanceButton.frame.size.height)];
+        [distanceLabelofdistanceButton setText:@"选择送餐距离"];
+        [distanceLabelofdistanceButton setTextAlignment:NSTextAlignmentCenter];
+        [distanceLabelofdistanceButton setTextColor:[UIColor colorWithRed:0.43 green:0.62 blue:0.72 alpha:1]];
+        [_distanceButton addSubview:distanceLabelofdistanceButton];
     }
     return _distanceButton;
+}
+
+- (UITextField *)phoneNumber
+{
+    if (!_phoneNumber) {
+        _phoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(10, phoneNumberLabel.frame.origin.y + phoneNumberLabel.frame.size.height, 300, 40)];
+        [_phoneNumber setBackgroundColor:[UIColor whiteColor]];
+        [_phoneNumber setPlaceholder:@"手机号码"];
+        [_phoneNumber setLeftViewMode:UITextFieldViewModeAlways];
+        [_phoneNumber setLeftView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 0)]];
+        [_phoneNumber setClearsOnBeginEditing:YES];
+        [_phoneNumber setKeyboardType:UIKeyboardTypeNumberPad];
+        [_phoneNumber setClearButtonMode:UITextFieldViewModeWhileEditing];
+        [_phoneNumber setFont:[UIFont systemFontOfSize:16]];
+        [_phoneNumber setTextColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.6 alpha:1]];
+        [_phoneNumber.layer setBorderColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1].CGColor];
+        [_phoneNumber.layer setBorderWidth:1.5];
+        [_phoneNumber.layer setCornerRadius:3];
+        [_phoneNumber setDelegate:self];
+    }
+    return _phoneNumber;
 }
 
 - (UILabel *)locationLabel
@@ -461,6 +518,8 @@
 
 - (void)distanceChoose
 {
+    [distanceLabelofdistanceButton setText:@"500米"];
+    distance = 500;
     distancePickerBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, wholeScrollView.frame.size.height)];
     [distancePickerBackground setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.4]];
     pickerSelectionData = [[NSArray alloc] initWithObjects:@"500米", @"1000米", @"1500米", @"2000米", nil];
@@ -487,6 +546,9 @@
 - (void)chooseComplete
 {
     [distancePickerBackground removeFromSuperview];
+    DistanceHelper *dic = [[DistanceHelper alloc] init];
+    xy = [[NSDictionary alloc] initWithDictionary:[dic distanceHelper:distance withCoords:point]];
+    NSLog(@"%@",xy);
 }
 
 //事件  完
@@ -502,8 +564,11 @@
     else if(textField == self.shopName) {
         [self.shopName resignFirstResponder];
         [self.bankNumber becomeFirstResponder];
-    }else{
+    }else if(textField == self.bankNumber){
         [self.bankNumber resignFirstResponder];
+        [self.phoneNumber becomeFirstResponder];
+    }else{
+        [self.phoneNumber resignFirstResponder];
     }
     return YES;
 }
@@ -516,6 +581,13 @@
             [wholeScrollView setContentOffset:CGPointMake(0, 216) animated:YES];
         }else{
             [wholeScrollView setContentOffset:CGPointMake(0, 128) animated:YES];
+        }
+    }else if (textField == self.phoneNumber){
+        NSLog(@"%f",self.screenHeight);
+        if (self.screenHeight == 460) {
+            [wholeScrollView setContentOffset:CGPointMake(0, 426) animated:YES];
+        }else{
+            [wholeScrollView setContentOffset:CGPointMake(0, 338) animated:YES];
         }
     }
 }
@@ -534,6 +606,7 @@
     [self.supervisorName resignFirstResponder];
     [self.shopName resignFirstResponder];
     [self.bankNumber resignFirstResponder];
+    [self.phoneNumber resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -575,6 +648,7 @@
     NSLog(@"%@",userLocation.location);
     [self searchReGeocode:userLocation.location.coordinate.latitude withLongitude:userLocation.location.coordinate.longitude];
     self.mapView.showsUserLocation = NO;
+    point = userLocation.coordinate;
 }
 
 - (void)mapView:(MAMapView *)mapView didFailToLocateUserWithError:(NSError *)error
@@ -608,7 +682,27 @@
 #pragma mark - UIPickerViewDelegate
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-    NSLog(@"%@",[pickerSelectionData objectAtIndex:row]);
+    
+    switch (row) {
+        case 0:
+            distance = 500;
+            [distanceLabelofdistanceButton setText:@"500米"];
+            break;
+        case 1:
+            distance = 1000;
+            [distanceLabelofdistanceButton setText:@"1000米"];
+            break;
+        case 2:
+            distance = 1500;
+            [distanceLabelofdistanceButton setText:@"1500米"];
+            break;
+        case 3:
+            distance = 2000;
+            [distanceLabelofdistanceButton setText:@"2000米"];
+            break;
+        default:
+            break;
+    }
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView

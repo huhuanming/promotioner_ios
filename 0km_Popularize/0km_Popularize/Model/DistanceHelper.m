@@ -27,52 +27,56 @@
 - (double)latitude1:(CLLocationCoordinate2D)coords withDistance:(double)distance
 {
     double result;
-    
-    MAMapPoint a = MAMapPointForCoordinate(coords);
-    coords.latitude += 0.005;
-    MAMapPoint b = MAMapPointForCoordinate(coords);
+    CLLocationCoordinate2D temp = coords;
+    MAMapPoint a = MAMapPointForCoordinate(temp);
+    temp.latitude += 0.005;
+    MAMapPoint b = MAMapPointForCoordinate(temp);
     CLLocationDistance  dis  = MAMetersBetweenMapPoints(a, b);
     result = 0.005/dis * distance;
-    NSLog(@"distance:%lf",dis);
+    NSLog(@"distance:%lf",distance);
+    result = coords.latitude + result;
     return result;
 }
 
 - (double)latitude2:(CLLocationCoordinate2D)coords withDistance:(double)distance
 {
     double result;
-    
-    MAMapPoint a = MAMapPointForCoordinate(coords);
-    coords.latitude -= 0.005;
-    MAMapPoint b = MAMapPointForCoordinate(coords);
+    CLLocationCoordinate2D temp = coords;
+    MAMapPoint a = MAMapPointForCoordinate(temp);
+    temp.latitude -= 0.005;
+    MAMapPoint b = MAMapPointForCoordinate(temp);
     CLLocationDistance  dis  = MAMetersBetweenMapPoints(a, b);
     result = 0.005/dis * distance;
-    NSLog(@"distance:%lf",dis);
+    NSLog(@"distance:%lf",distance);
+    result = coords.latitude - result;
     return result;
 }
 
 - (double)longtitude1:(CLLocationCoordinate2D)coords withDistance:(double)distance
 {
     double result;
-    
-    MAMapPoint a = MAMapPointForCoordinate(coords);
-    coords.longitude += 0.005;
-    MAMapPoint b = MAMapPointForCoordinate(coords);
+    CLLocationCoordinate2D temp = coords;
+    MAMapPoint a = MAMapPointForCoordinate(temp);
+    temp.longitude += 0.005;
+    MAMapPoint b = MAMapPointForCoordinate(temp);
     CLLocationDistance  dis  = MAMetersBetweenMapPoints(a, b);
     result = 0.005/dis * distance;
-    NSLog(@"distance:%lf",dis);
+    NSLog(@"distance:%lf",distance);
+    result = coords.longitude + result;
     return result;
 }
 
 - (double)longtitude2:(CLLocationCoordinate2D)coords withDistance:(double)distance
 {
     double result;
-    
-    MAMapPoint a = MAMapPointForCoordinate(coords);
-    coords.longitude -= 0.005;
-    MAMapPoint b = MAMapPointForCoordinate(coords);
+    CLLocationCoordinate2D temp = coords;
+    MAMapPoint a = MAMapPointForCoordinate(temp);
+    temp.longitude -= 0.005;
+    MAMapPoint b = MAMapPointForCoordinate(temp);
     CLLocationDistance  dis  = MAMetersBetweenMapPoints(a, b);
     result = 0.005/dis * distance;
-    NSLog(@"distance:%lf",dis);
+    NSLog(@"distance:%lf",distance);
+    result = coords.longitude - result;
     return result;
 }
 
