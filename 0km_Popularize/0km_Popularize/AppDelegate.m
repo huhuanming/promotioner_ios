@@ -15,7 +15,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UIViewController *viewController = [[LoginViewController alloc] init];
+    UIViewController *viewController;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"token"] == NULL) {
+        viewController = [[LoginViewController alloc] init];
+    }else{
+        viewController = [[HomeViewController alloc] init];
+    }
     UINavigationController *navigationController = [[UINavigationController alloc] init];
     [navigationController setViewControllers:@[viewController]];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:0.15 green:0.67 blue:0.9 alpha:1]];

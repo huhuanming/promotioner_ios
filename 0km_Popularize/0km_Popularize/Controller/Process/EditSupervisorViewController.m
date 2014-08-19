@@ -8,8 +8,10 @@
 
 #import "EditSupervisorViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "QiniuUploader.h"
+#import "DistanceHelper.h"
 
-@interface EditSupervisorViewController ()<UITextFieldDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate>
+@interface EditSupervisorViewController ()<UITextFieldDelegate, UIImagePickerControllerDelegate, UIGestureRecognizerDelegate, QiniuUploaderDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 
 @end
 
@@ -20,6 +22,12 @@
     UILabel *licence;
     UILabel *bank;
     UILabel *location;
+    UILabel *distanceLabel;
+    UIPickerView *distancePicker;
+    double distance;  //存的商家确定的距离
+    NSDictionary *xy;    //存的商家确定范围后的四个点
+    NSArray *pickerSelectionData;
+    UIView *distancePickerBackground;
     
     UILabel *frontSide;
     UILabel *backSide;
@@ -69,6 +77,7 @@
     [self addLicence];
     [self addBank];
     [self addLocation];
+    [self addDistance];
 }
 
 - (void)addName
@@ -123,6 +132,16 @@
     [location setTextColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.6 alpha:1]];
     [wholeScrollView addSubview:location];
     [wholeScrollView addSubview:self.locationBackground];
+}
+
+- (void)addDistance
+{
+    distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _locationBackground.frame.origin.y + _locationBackground.frame.size.height, 150, 30)];
+    [distanceLabel setText:@"送餐半径"];
+    [distanceLabel setFont:[UIFont systemFontOfSize:14]];
+    [distanceLabel setTextColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.6 alpha:1]];
+    [wholeScrollView addSubview:distanceLabel];
+    [wholeScrollView addSubview:self.distanceButton];
 }
 
 - (void)addNameShadow
@@ -275,6 +294,23 @@
     return _locationBackground;
 }
 
+- (UIView *)distanceButton
+{
+    if (!_distanceButton) {
+        _distanceButton = [[UIView alloc] initWithFrame:CGRectMake(10, distanceLabel.frame.origin.y + distanceLabel.frame.size.height, 300, 40)];
+        [_distanceButton setBackgroundColor:[UIColor whiteColor]];
+        [_distanceButton.layer setBorderColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1].CGColor];
+        [_distanceButton.layer setBorderWidth:1.5];
+        [_distanceButton.layer setCornerRadius:3];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(distanceChoose)];
+        [tap setNumberOfTouchesRequired:1];
+        [tap setNumberOfTapsRequired:1];
+        tap.delegate = self;
+        [_distanceButton addGestureRecognizer:tap];
+    }
+    return _distanceButton;
+}
+
 - (UILabel *)locationLabel
 {
     if (!_locationLabel) {
@@ -294,6 +330,7 @@
     }
     return _locationImageView;
 }
+
 
 //UI控件  完
 
@@ -376,6 +413,20 @@
         [_frontIDCard.imageView setClipsToBounds:YES];
         [_frontIDCard.imageView setContentMode:UIViewContentModeScaleAspectFill];
         [_frontIDCard setImage:info[@"UIImagePickerControllerOriginalImage"] forState:UIControlStateNormal];
+        
+        //give token
+        QiniuToken *token = [[QiniuToken alloc] initWithScope:kScope SecretKey:kSecretKey Accesskey:kAccessKey];
+        
+        //give file
+        QiniuFile *file = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(_frontIDCard.imageView.image, 0.3f)];
+        
+        //startUpload
+        QiniuUploader *uploader = [[QiniuUploader alloc] initWithToken:token];
+        [uploader addFile:file];
+//        [uploader addFile:file];
+//        [uploader addFile:file];
+        [uploader setDelegate:self];
+        [uploader startUpload];
     }else if (flag == 2) {
         [backSide removeFromSuperview];
         [_backIDCard.imageView setClipsToBounds:YES];
@@ -406,6 +457,36 @@
     [self.mapView setUserTrackingMode: MAUserTrackingModeFollowWithHeading animated:YES];
     self.search = [[AMapSearchAPI alloc] initWithSearchKey:@"cd729ac8c8e8b5846849668bf42633d5" Delegate:self];
     self.mapView.delegate = self;
+}
+
+- (void)distanceChoose
+{
+    distancePickerBackground = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.screenWidth, wholeScrollView.frame.size.height)];
+    [distancePickerBackground setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.4]];
+    pickerSelectionData = [[NSArray alloc] initWithObjects:@"500米", @"1000米", @"1500米", @"2000米", nil];
+    distancePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(40, self.screenHeight/2 - 40, 240, 80)];
+    [distancePicker setDataSource:self];
+    [distancePicker setDelegate:self];
+    [distancePicker setBackgroundColor:[UIColor whiteColor]];
+    [distancePicker.layer setBorderColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1].CGColor];
+    [distancePicker.layer setBorderWidth:1.5];
+    [distancePicker.layer setCornerRadius:7];
+    UIButton *complete = [[UIButton alloc] initWithFrame:CGRectMake(30, self.screenHeight - 30, 260, 40)];
+    [complete setTitle:@"完成" forState:UIControlStateNormal];
+    [complete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [complete addTarget:self action:@selector(chooseComplete) forControlEvents:UIControlEventTouchUpInside];
+    [complete setBackgroundColor:[UIColor colorWithRed:0.19 green:0.68 blue:0.9 alpha:1]];
+    [complete.layer setBorderColor:[UIColor colorWithRed:0.87 green:0.87 blue:0.87 alpha:1].CGColor];
+    [complete.layer setBorderWidth:1.5];
+    [complete.layer setCornerRadius:3];
+    [self.view addSubview:distancePickerBackground];
+    [distancePickerBackground addSubview:complete];
+    [distancePickerBackground addSubview:distancePicker];
+}
+
+- (void)chooseComplete
+{
+    [distancePickerBackground removeFromSuperview];
 }
 
 //事件  完
@@ -500,6 +581,49 @@
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"错误" message:@"定位失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert show];
+}
+
+#pragma mark - QiniuUploadDelegate
+
+- (void)uploadOneFileFailed:(AFHTTPRequestOperation *)operation Index:(NSInteger)index error:(NSError *)error
+{
+     NSLog(@"%@",error.description);
+}
+
+- (void)uploadOneFileSucceeded:(AFHTTPRequestOperation *)operation Index:(NSInteger)index ret:(NSDictionary *)ret
+{
+    NSLog(@"%@",ret);
+}
+
+- (void)uploadOneFileProgress:(NSInteger)index UploadPercent:(double)percent
+{
+    NSLog(@"%lf",percent);
+}
+
+- (void)uploadAllFilesComplete
+{
+    
+}
+
+#pragma mark - UIPickerViewDelegate
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSLog(@"%@",[pickerSelectionData objectAtIndex:row]);
+}
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return pickerSelectionData.count;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [pickerSelectionData objectAtIndex:row];
 }
 
 @end

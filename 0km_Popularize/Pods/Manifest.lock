@@ -23,10 +23,12 @@ PODS:
     - TransitionKit (= 2.1.0)
   - RKValueTransformers (1.1.0)
   - SOCKit (1.1)
+  - SVProgressHUD (1.0)
   - TransitionKit (2.1.0)
 
 DEPENDENCIES:
   - RestKit
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
@@ -34,6 +36,7 @@ SPEC CHECKSUMS:
   RestKit: dd01867ddb4098e7cfd26125515a9b03b2accadf
   RKValueTransformers: b705e7b4651b9206b94600408462b74554bba969
   SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
   TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
 
 COCOAPODS: 0.33.1

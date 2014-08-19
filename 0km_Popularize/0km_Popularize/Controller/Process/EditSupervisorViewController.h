@@ -22,6 +22,7 @@
 @property (nonatomic,strong) IBOutlet UIView *locationBackground;
 @property (nonatomic,strong) IBOutlet UILabel *locationLabel;
 @property (nonatomic,strong) IBOutlet UIImageView *locationImageView;
+@property (nonatomic,strong) IBOutlet UIView *distanceButton;
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapSearchAPI *search;
 

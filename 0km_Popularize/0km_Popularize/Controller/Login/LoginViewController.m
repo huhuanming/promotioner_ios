@@ -7,8 +7,8 @@
 //
 
 #import "LoginViewController.h"
-#import "LoginProduct.h"
 #import "Article.h"
+#import "AccessToken.h"
 
 @interface LoginViewController ()<UITextFieldDelegate>
 
@@ -87,6 +87,7 @@
         [_phoneNum setBackgroundColor:[UIColor whiteColor]];
         [_phoneNum setPlaceholder:@"手机号"];
         [_phoneNum setLeftViewMode:UITextFieldViewModeAlways];
+        [_phoneNum setClearButtonMode:UITextFieldViewModeWhileEditing];
         [_phoneNum setLeftView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 0)]];
         [_phoneNum setDelegate:self];
         CALayer *layer = [[CALayer alloc] init];
@@ -104,6 +105,8 @@
         [_passWord setBackgroundColor:[UIColor whiteColor]];
         [_passWord setPlaceholder:@"密码"];
         [_passWord setLeftViewMode:UITextFieldViewModeAlways];
+        [_passWord setSecureTextEntry:YES];
+        [_passWord setClearButtonMode:UITextFieldViewModeWhileEditing];
         [_passWord setLeftView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 0)]];
         [_passWord setDelegate:self];
         CALayer *layer = [[CALayer alloc] init];
@@ -130,7 +133,7 @@
 
 - (IBAction)login:(id)sender
 {
-    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[LoginProduct class]];
+    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[AccessToken class]];
     NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(201);
     [contactMapping addAttributeMappingsFromDictionary:@{
                                                          @"token": @"token",
@@ -141,24 +144,26 @@
     RKObjectManager *manager = [RKObjectManager managerWithBaseURL:url];
     [manager addResponseDescriptor:contactDescriptor];
     NSMutableDictionary *parma = [[NSMutableDictionary alloc] init];
-    [parma setValue:@"1212" forKey:@"username"];
-    [parma setValue:@"1212" forKey:@"password"];
+    [parma setValue:self.phoneNum.text forKey:@"username"];
+    [parma setValue:self.passWord.text forKey:@"password"];
     NSLog(@"%@",parma);
+    [SVProgressHUD showWithStatus:@"登陆中"];
     [manager postObject:nil path:@"/v1/promotioners/login" parameters:parma.copy success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-        NSLog(@"The public timeline Tweets: %@", result);
-        LoginProduct *test = result.array.lastObject;
-        NSLog(@"%@",test);
+        [SVProgressHUD showSuccessWithStatus:@"登陆成功"];
+        AccessToken *tokenAndKey = result.array.lastObject;
+        AccessToken *accessToken = [[AccessToken alloc] initWithToken:tokenAndKey.token Key:tokenAndKey.key];
+        NSLog(@"actk:%@",accessToken.accessToken);
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        [userDefaults setObject:accessToken.accessToken forKey:@"token"];
+        [self pushToNextViewController:@"HomeViewController" withDatas:nil];
+        NSMutableArray *viewArray = [[NSMutableArray alloc] init];
+        viewArray = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+        [viewArray removeObjectAtIndex:[viewArray count]-2];
+        self.navigationController.viewControllers = [NSArray arrayWithArray:viewArray];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        [SVProgressHUD showErrorWithStatus:@"登陆失败"];
         NSLog(@"%@",error);
     }];
-    
-    
-//    [operation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
-//        NSLog(@"The public timeline Tweets: %@", result.array.lastObject);
-//        LoginProduct *test = result.array.lastObject;
-//        NSLog(@"%@",test);
-//    } failure:nil];
-//    [operation start];
 }
 
 #pragma mark - UITextFieldDelegate
@@ -171,6 +176,7 @@
     }
     else if(textField == self.passWord) {
         [self.passWord resignFirstResponder];
+        [self login:self];
     }
     return YES;
 }
