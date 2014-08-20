@@ -19,5 +19,6 @@
     #import "RootViewController.h"
     #import <RestKit.h>
     #import <SVProgressHUD.h>
+    #import "PostAllResponse.h"
 
 #endif

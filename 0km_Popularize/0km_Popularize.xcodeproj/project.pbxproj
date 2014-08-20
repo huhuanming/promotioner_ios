@@ -39,6 +39,7 @@
 		A0C5709F19A1D7E700ADF591 /* QiniuToken.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C5709A19A1D7E700ADF591 /* QiniuToken.m */; };
 		A0C570A019A1D7E700ADF591 /* QiniuUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C5709C19A1D7E700ADF591 /* QiniuUploader.m */; };
 		A0C570A319A3019B00ADF591 /* DistanceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C570A219A3019B00ADF591 /* DistanceHelper.m */; };
+		A0C570A619A3A2B600ADF591 /* PostAllResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A0C570A519A3A2B600ADF591 /* PostAllResponse.m */; };
 		A0ED05F819A067CC00DDC762 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = A0ED05F719A067CC00DDC762 /* Article.m */; };
 		DFC41F74C9764F5C974DFAC4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0BBBBF7AE1418EABED9E1B /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -108,6 +109,8 @@
 		A0C5709D19A1D7E700ADF591 /* QiniuUploaderDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QiniuUploaderDelegate.h; path = 0km_Popularize/Model/QiniuUploaderDelegate.h; sourceTree = SOURCE_ROOT; };
 		A0C570A119A3019B00ADF591 /* DistanceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DistanceHelper.h; sourceTree = "<group>"; };
 		A0C570A219A3019B00ADF591 /* DistanceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistanceHelper.m; sourceTree = "<group>"; };
+		A0C570A419A3A2B500ADF591 /* PostAllResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostAllResponse.h; sourceTree = "<group>"; };
+		A0C570A519A3A2B600ADF591 /* PostAllResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostAllResponse.m; sourceTree = "<group>"; };
 		A0ED05F619A067CC00DDC762 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
 		A0ED05F719A067CC00DDC762 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
 		CE0BBBBF7AE1418EABED9E1B /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -341,6 +344,8 @@
 				A0ED05F719A067CC00DDC762 /* Article.m */,
 				A0C570A119A3019B00ADF591 /* DistanceHelper.h */,
 				A0C570A219A3019B00ADF591 /* DistanceHelper.m */,
+				A0C570A419A3A2B500ADF591 /* PostAllResponse.h */,
+				A0C570A519A3A2B600ADF591 /* PostAllResponse.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				A0ED05F819A067CC00DDC762 /* Article.m in Sources */,
 				A05D91F41994CB1F000CA97B /* AppDelegate.m in Sources */,
 				A05D91F01994CB1F000CA97B /* main.m in Sources */,
+				A0C570A619A3A2B600ADF591 /* PostAllResponse.m in Sources */,
 				A02C7D37199DF07200686D1F /* LoginViewController.m in Sources */,
 				A0055DC319A1BD9500775046 /* AccessToken.m in Sources */,
 				A0C570A319A3019B00ADF591 /* DistanceHelper.m in Sources */,

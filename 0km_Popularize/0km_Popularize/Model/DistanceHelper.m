@@ -17,10 +17,10 @@
     double latitude1 = [self latitude1:coords withDistance:distance];
     double latitude2 = [self latitude2:coords withDistance:distance];
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
-    [result setValue:[NSNumber numberWithDouble:longtitude1] forKey:@"y1"];
-    [result setValue:[NSNumber numberWithDouble:longtitude2] forKey:@"y2"];
-    [result setValue:[NSNumber numberWithDouble:latitude1] forKey:@"x1"];
-    [result setValue:[NSNumber numberWithDouble:latitude2] forKey:@"x2"];
+    [result setValue:[NSNumber numberWithDouble:longtitude1] forKey:@"x1"];
+    [result setValue:[NSNumber numberWithDouble:longtitude2] forKey:@"x2"];
+    [result setValue:[NSNumber numberWithDouble:latitude1] forKey:@"y1"];
+    [result setValue:[NSNumber numberWithDouble:latitude2] forKey:@"y2"];
     return result.copy;
 }
 

@@ -36,7 +36,12 @@
     UILabel *backSide;
     
     UIButton *allComplete;
-        
+    
+    QiniuUploader *uploader;
+    NSString *keyOfFront;
+    NSString *keyOfBack;
+    NSString *keyOfLicence;
+    
     int flag;    //判断是照的正面，反面，还是营业执照， 1是正面，2是反面，3是营业执照
 }
 
@@ -58,6 +63,12 @@
     [self addWholeScrollView];
     [self addViews];
     [self initLocation];
+    [self initKey];
+}
+
+- (void)initKey
+{
+    
 }
 
 //UI控件
@@ -170,6 +181,7 @@
     allComplete = [[UIButton alloc] initWithFrame:CGRectMake(10, _phoneNumber.frame.origin.y + _phoneNumber.frame.size.height + 10, 300, 40)];
     [allComplete.layer setCornerRadius:3];
     [allComplete setBackgroundColor:[UIColor colorWithRed:0.19 green:0.68 blue:0.89 alpha:1]];
+    [allComplete addTarget:self action:@selector(postAll:) forControlEvents:UIControlEventTouchUpInside];
     [allComplete setTitle:@"完成创建" forState:UIControlStateNormal];
     [allComplete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [wholeScrollView addSubview:allComplete];
@@ -470,20 +482,6 @@
         [_frontIDCard.imageView setClipsToBounds:YES];
         [_frontIDCard.imageView setContentMode:UIViewContentModeScaleAspectFill];
         [_frontIDCard setImage:info[@"UIImagePickerControllerOriginalImage"] forState:UIControlStateNormal];
-        
-        //give token
-        QiniuToken *token = [[QiniuToken alloc] initWithScope:kScope SecretKey:kSecretKey Accesskey:kAccessKey];
-        
-        //give file
-        QiniuFile *file = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(_frontIDCard.imageView.image, 0.3f)];
-        
-        //startUpload
-        QiniuUploader *uploader = [[QiniuUploader alloc] initWithToken:token];
-        [uploader addFile:file];
-//        [uploader addFile:file];
-//        [uploader addFile:file];
-        [uploader setDelegate:self];
-        [uploader startUpload];
     }else if (flag == 2) {
         [backSide removeFromSuperview];
         [_backIDCard.imageView setClipsToBounds:YES];
@@ -549,6 +547,83 @@
     DistanceHelper *dic = [[DistanceHelper alloc] init];
     xy = [[NSDictionary alloc] initWithDictionary:[dic distanceHelper:distance withCoords:point]];
     NSLog(@"%@",xy);
+}
+
+- (IBAction)postAll:(id)sender
+{
+    //give token
+    QiniuToken *token = [[QiniuToken alloc] initWithScope:kScope SecretKey:kSecretKey Accesskey:kAccessKey];
+    [SVProgressHUD showWithStatus:@"餐馆创建中..."];
+    //give file
+    QiniuFile *file1 = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(_frontIDCard.imageView.image, 0.3f)];
+    QiniuFile *file2 = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(_backIDCard.imageView.image, 0.3f)];
+    QiniuFile *file3 = [[QiniuFile alloc] initWithFileData:UIImageJPEGRepresentation(_licenceButton.imageView.image, 0.3f)];
+    
+    //startUpload
+    uploader = [[QiniuUploader alloc] initWithToken:token];
+    [uploader addFile:file1];
+    [uploader addFile:file2];
+    [uploader addFile:file3];
+    [uploader setDelegate:self];
+    [uploader startUpload];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    RKObjectMapping *contactMapping = [RKObjectMapping mappingForClass:[PostAllResponse class]];
+    NSIndexSet *statusCodes = RKStatusCodeIndexSetForClass(201);
+    [contactMapping addAttributeMappingsFromDictionary:@{
+                                                         @"response_status": @"response_status"
+                                                         }];
+    RKResponseDescriptor *contactDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:contactMapping method:RKRequestMethodAny pathPattern:@"/v1/restaurants" keyPath:nil statusCodes:statusCodes];
+    NSURL *url = [NSURL URLWithString:@"http://www.0km.me:9000"];
+    RKObjectManager *manager = [RKObjectManager managerWithBaseURL:url];
+    [manager addResponseDescriptor:contactDescriptor];
+    NSMutableDictionary *parma = [[NSMutableDictionary alloc] init];
+    if ([userDefaults objectForKey:@"token"] != NULL && keyOfBack != NULL && keyOfFront != NULL && keyOfLicence != NULL && _shopName.text != NULL && _supervisorName.text != NULL && _bankNumber != NULL && _phoneNumber != NULL && xy != NULL && distance > 0) {
+        [parma setValue:[userDefaults objectForKey:@"token"] forKey:@"access_token"];
+        [parma setValue:self.shopName.text forKey:@"restaurant_name"];
+        [parma setValue:self.supervisorName.text forKey:@"supervisor_name"];
+        [parma setValue:self.bankNumber.text forKey:@"back_account"];
+        [parma setValue:self.phoneNumber.text forKey:@"phone_number"];
+        [parma setValue:keyOfFront forKey:@"id_card_front"];
+        [parma setValue:keyOfBack forKey:@"id_card_reverse"];
+        [parma setValue:keyOfLicence forKey:@"linsece"];
+        [parma setValue:self.locationLabel.text forKey:@"address"];
+        [parma setValue:[NSString stringWithFormat:@"%lf",point.longitude] forKey:@"longitude"];
+        [parma setValue:[NSString stringWithFormat:@"%lf",point.latitude] forKey:@"latitude"];
+        [parma setValue:[xy objectForKey:@"x1"] forKey:@"coordinate_x1"];
+        [parma setValue:[xy objectForKey:@"x2"] forKey:@"coordinate_x2"];
+        [parma setValue:[xy objectForKey:@"y1"] forKey:@"coordinate_y1"];
+        [parma setValue:[xy objectForKey:@"y2"] forKey:@"coordinate_y2"];
+
+        NSLog(@"parma:%@",parma);
+        [manager postObject:nil path:@"/v1/restaurants" parameters:parma.copy success:^(RKObjectRequestOperation *operation, RKMappingResult *result) {
+            [SVProgressHUD showSuccessWithStatus:@"创建成功"];
+            PostAllResponse *postResult = result.array.lastObject;
+            NSLog(@"successCode:%@",postResult);
+            [self popToPreviousContrller:nil];
+        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            [SVProgressHUD showErrorWithStatus:@"创建失败"];
+            NSLog(@"%@",error);
+            switch (error.code) {
+                case 401:
+                    [SVProgressHUD showErrorWithStatus:@"请重新安装本应用并登录"];
+                    break;
+                case 404:
+                    [SVProgressHUD showErrorWithStatus:@"本账号不存在，请联系开发人员"];
+                    break;
+                case 500:
+                    [SVProgressHUD showErrorWithStatus:@"未知错误,请联系开发人员"];
+                    break;
+                case 501:
+                    [SVProgressHUD showErrorWithStatus:@"有条目已存在，请检查"];
+                    break;
+                default:
+                    break;
+            }
+        }];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"尚有项目未完成"];
+    }
+    
 }
 
 //事件  完
@@ -662,11 +737,26 @@
 - (void)uploadOneFileFailed:(AFHTTPRequestOperation *)operation Index:(NSInteger)index error:(NSError *)error
 {
      NSLog(@"%@",error.description);
+    [uploader cancelAllUploadTask];
+    [SVProgressHUD showErrorWithStatus:@"图片上传失败，请重试"];
 }
 
 - (void)uploadOneFileSucceeded:(AFHTTPRequestOperation *)operation Index:(NSInteger)index ret:(NSDictionary *)ret
 {
     NSLog(@"%@",ret);
+    switch (index) {
+        case 0:
+            keyOfFront = [[NSString alloc] initWithString:[ret objectForKey:@"key"]];
+            break;
+        case 1:
+            keyOfBack = [[NSString alloc] initWithString:[ret objectForKey:@"key"]];
+            break;
+        case 2:
+            keyOfLicence = [[NSString alloc] initWithString:[ret objectForKey:@"key"]];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)uploadOneFileProgress:(NSInteger)index UploadPercent:(double)percent
