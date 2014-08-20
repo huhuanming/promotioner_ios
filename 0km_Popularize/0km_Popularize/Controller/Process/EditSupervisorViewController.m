@@ -169,7 +169,7 @@
 - (void)addPhoneNumber
 {
     phoneNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, _distanceButton.frame.origin.y + _distanceButton.frame.size.height, 150, 30)];
-    [phoneNumberLabel setText:@"送餐半径"];
+    [phoneNumberLabel setText:@"手机号码(商家账号)"];
     [phoneNumberLabel setFont:[UIFont systemFontOfSize:14]];
     [phoneNumberLabel setTextColor:[UIColor colorWithRed:0.57 green:0.57 blue:0.6 alpha:1]];
     [wholeScrollView addSubview:phoneNumberLabel];
