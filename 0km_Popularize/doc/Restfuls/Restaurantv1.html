@@ -124,106 +124,62 @@
 
         <div class="method-description">
           
-          <p>餐馆接口</p>
+          <pre>餐馆接口
 
-<h1 id="method-i-restaurants-label-%E6%93%8D%E4%BD%9C">操作<span><a href="#method-i-restaurants-label-%E6%93%8D%E4%BD%9C">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
-<ul><li>
-<p>创建餐馆</p>
-</li></ul>
+= 操作
+* 创建餐馆
 
-<h2 id="method-i-restaurants-label-%E5%88%9B%E5%BB%BA%E9%A4%90%E9%A6%86">创建餐馆<span><a href="#method-i-restaurants-label-%E5%88%9B%E5%BB%BA%E9%A4%90%E9%A6%86">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+== 创建餐馆
+    创建一家餐馆，并生成一个商家帐号，商家登录帐号为他填写的手机号，登录密码为手机号后四位
+==== POST
+ /restaurants
+==== Params
+====== access_token:
+    地推人员 access_token
+====== restaurant_name:
+    餐馆名称</pre>
 
-<pre>创建一家餐馆，并生成一个商家帐号，商家登录帐号为他填写的手机号，登录密码为手机号后四位</pre>
+<h6 id="method-i-restaurants-label-supervisor_name">supervisor_name<span><a href="#method-i-restaurants-label-supervisor_name">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
 
-<h4 id="method-i-restaurants-label-POST">POST<span><a href="#method-i-restaurants-label-POST">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
-
-<pre>/restaurants</pre>
-
-<h4 id="method-i-restaurants-label-Params">Params<span><a href="#method-i-restaurants-label-Params">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
-
-<h6 id="method-i-restaurants-label-access_token%3A">access_token:<span><a href="#method-i-restaurants-label-access_token%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>地推人员 access_token</pre>
-
-<h6 id="method-i-restaurants-label-restaurant_name%3A">restaurant_name:<span><a href="#method-i-restaurants-label-restaurant_name%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆名称</pre>
-
-<h6 id="method-i-restaurants-label-back_account%3A">back_account:<span><a href="#method-i-restaurants-label-back_account%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>银行帐号</pre>
-
-<h6 id="method-i-restaurants-label-phone_number%3A">phone_number:<span><a href="#method-i-restaurants-label-phone_number%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆联系电话（餐馆经营者手机号码）</pre>
-
-<h6 id="method-i-restaurants-label-linsece%3A">linsece:<span><a href="#method-i-restaurants-label-linsece%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆的营业执照</pre>
-
-<h6 id="method-i-restaurants-label-id_card_front%3A">id_card_front:<span><a href="#method-i-restaurants-label-id_card_front%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>身份证正面照片</pre>
-
-<h6 id="method-i-restaurants-label-id_card_reverse%3A">id_card_reverse:<span><a href="#method-i-restaurants-label-id_card_reverse%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>身份证背面照片</pre>
-
-<h6 id="method-i-restaurants-label-address%3A">address:<span><a href="#method-i-restaurants-label-address%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆地址</pre>
-
-<h6 id="method-i-restaurants-label-radius%3A">radius:<span><a href="#method-i-restaurants-label-radius%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>送餐半径，单位是米</pre>
-
-<h6 id="method-i-restaurants-label-longitude%3A">longitude:<span><a href="#method-i-restaurants-label-longitude%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆坐标经度</pre>
-
-<h6 id="method-i-restaurants-label-latitude%3A">latitude:<span><a href="#method-i-restaurants-label-latitude%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆坐标纬度</pre>
-
-<h6 id="method-i-restaurants-label-coordinate_x1%3A">coordinate_x1:<span><a href="#method-i-restaurants-label-coordinate_x1%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆x1坐标</pre>
-
-<h6 id="method-i-restaurants-label-coordinate_x2%3A">coordinate_x2:<span><a href="#method-i-restaurants-label-coordinate_x2%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆x2坐标</pre>
-
-<h6 id="method-i-restaurants-label-coordinate_y1%3A">coordinate_y1:<span><a href="#method-i-restaurants-label-coordinate_y1%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆y1坐标</pre>
-
-<h6 id="method-i-restaurants-label-coordinate_y2%3A">coordinate_y2:<span><a href="#method-i-restaurants-label-coordinate_y2%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>餐馆y2坐标</pre>
-
-<h4 id="method-i-restaurants-label-Response+Status+Code">Response Status Code<span><a href="#method-i-restaurants-label-Response+Status+Code">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
-
-<pre>201</pre>
-
-<h4 id="method-i-restaurants-label-Response+Body">Response Body<span><a href="#method-i-restaurants-label-Response+Body">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
-
-<h6 id="method-i-restaurants-label-response_status%3A">response_status:<span><a href="#method-i-restaurants-label-response_status%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>&quot;successed to create a restaurant&quot;(字符串)</pre>
-
-<h4 id="method-i-restaurants-label-Error+Status+Code">Error Status Code<span><a href="#method-i-restaurants-label-Error+Status+Code">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
-
-<h6 id="method-i-restaurants-label-401%3A">401:<span><a href="#method-i-restaurants-label-401%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>地推帐号验证错误，AccessToken 过期、无效</pre>
-
-<h6 id="method-i-restaurants-label-404%3A">404:<span><a href="#method-i-restaurants-label-404%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>地推帐号 AccessToken 不存在</pre>
-
-<h6 id="method-i-restaurants-label-501%3A">501:<span><a href="#method-i-restaurants-label-501%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
-
-<pre>数据存储错误</pre>
+<pre>    餐馆老板名称
+====== back_account:
+    银行帐号
+====== phone_number:
+    餐馆联系电话（餐馆经营者手机号码）
+====== linsece:
+    餐馆的营业执照
+====== id_card_front:
+    身份证正面照片
+====== id_card_reverse:
+    身份证背面照片
+====== address:
+    餐馆地址
+====== radius:
+    送餐半径，单位是米
+====== longitude:
+    餐馆坐标经度
+====== latitude:
+    餐馆坐标纬度
+====== coordinate_x1:
+    餐馆x1坐标
+====== coordinate_x2:
+    餐馆x2坐标
+====== coordinate_y1:
+    餐馆y1坐标
+====== coordinate_y2:
+    餐馆y2坐标
+==== Response Status Code
+    201
+==== Response Body
+====== response_status:
+    &quot;successed to create a restaurant&quot;(字符串)
+==== Error Status Code
+====== 401:
+    地推帐号验证错误，AccessToken 过期、无效
+====== 404:
+    地推帐号 AccessToken 不存在
+====== 501:
+    数据存储错误</pre>
           
           
 

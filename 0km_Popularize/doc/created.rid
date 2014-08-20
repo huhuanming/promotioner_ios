@@ -1,4 +1,4 @@
-Tue, 19 Aug 2014 20:58:24 +0800
+Wed, 20 Aug 2014 15:16:21 +0800
 app/apis/restfuls/v1/ping_api.rb	Wed, 13 Aug 2014 15:48:13 +0800
-app/apis/restfuls/v1/promotioner_api.rb	Tue, 19 Aug 2014 00:45:43 +0800
-app/apis/restfuls/v1/restaurant_api.rb	Tue, 19 Aug 2014 20:58:15 +0800
+app/apis/restfuls/v1/promotioner_api.rb	Wed, 20 Aug 2014 00:28:39 +0800
+app/apis/restfuls/v1/restaurant_api.rb	Wed, 20 Aug 2014 15:16:07 +0800
