@@ -1,0 +1,295 @@
+{
+	"id": "3bc16bb6-5a9f-8d47-522b-36af58380477",
+	"name": "back_end",
+	"description": "",
+	"order": [
+		"babd4391-0502-8699-705e-cb255b59845d",
+		"26c13ee8-38b6-0880-c850-18aed3c8bda9",
+		"61fc11cd-b4ff-5295-cfec-5372762bca8f",
+		"86306151-7c1b-9e5d-eed7-4c9e1c769813",
+		"6272ec78-fcea-fc98-241c-b90aecdbaf92",
+		"d34a9597-ca20-9fd5-db10-9da056b4f227",
+		"bcaf3675-49f1-ea80-6f1d-665f41fa7245"
+	],
+	"folders": [],
+	"timestamp": 1408464862160,
+	"synced": false,
+	"requests": [
+		{
+			"id": "26c13ee8-38b6-0880-c850-18aed3c8bda9",
+			"headers": "",
+			"url": "http://www.0km.me:9000/v1/ping",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "username",
+					"value": "1212",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "1212",
+					"type": "text"
+				},
+				{
+					"key": "i",
+					"value": "",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1408863333475,
+			"name": "ping服务器：v1/ping",
+			"description": "",
+			"collectionId": "3bc16bb6-5a9f-8d47-522b-36af58380477",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "61fc11cd-b4ff-5295-cfec-5372762bca8f",
+			"headers": "",
+			"url": "http://www.0km.me:9000/v1/authenticate_promotioner",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "access_token",
+					"value": "",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1408866102721,
+			"name": "无效接口：v1/authenticate_promotioner",
+			"description": "",
+			"collectionId": "3bc16bb6-5a9f-8d47-522b-36af58380477",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "6272ec78-fcea-fc98-241c-b90aecdbaf92",
+			"headers": "",
+			"url": "http://www.0km.me:9000/v1/restaurants",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "access_token",
+					"value": "45cd9f8d-8479-445d-bbfa-129e217b2b0c:VY%2FuFQxbTgobnoyLEvUghZvaS0s%3D:%7B%22deadline%22%3A1410411608%2C%22device%22%3A1%7D",
+					"type": "text"
+				},
+				{
+					"key": "restaurant_name",
+					"value": "oh_yeah",
+					"type": "text"
+				},
+				{
+					"key": "supervisor_name",
+					"value": "米斯特",
+					"type": "text"
+				},
+				{
+					"key": "back_account",
+					"value": "1231232",
+					"type": "text"
+				},
+				{
+					"key": "phone_number",
+					"value": "1111",
+					"type": "text"
+				},
+				{
+					"key": "linsece",
+					"value": "meizhezhangtu",
+					"type": "text"
+				},
+				{
+					"key": "id_card_front",
+					"value": "meitu",
+					"type": "text"
+				},
+				{
+					"key": "id_card_reverse",
+					"value": "shuogejb",
+					"type": "text"
+				},
+				{
+					"key": "address",
+					"value": "peiking",
+					"type": "text"
+				},
+				{
+					"key": "radius",
+					"value": "500",
+					"type": "text"
+				},
+				{
+					"key": "longitude",
+					"value": "12",
+					"type": "text"
+				},
+				{
+					"key": "latitude",
+					"value": "12",
+					"type": "text"
+				},
+				{
+					"key": "coordinate_x1",
+					"value": "10",
+					"type": "text"
+				},
+				{
+					"key": "coordinate_x2",
+					"value": "14",
+					"type": "text"
+				},
+				{
+					"key": "coordinate_y1",
+					"value": "10",
+					"type": "text"
+				},
+				{
+					"key": "coordinate_y2",
+					"value": "13",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1410411331281,
+			"name": "地推创建餐馆：v1/restaurants",
+			"description": "",
+			"collectionId": "3bc16bb6-5a9f-8d47-522b-36af58380477",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "86306151-7c1b-9e5d-eed7-4c9e1c769813",
+			"headers": "",
+			"url": "http://www.0km.me:9000/v1/supervisors/login",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "554155",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "4155",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1409407527577,
+			"name": "餐厅管理员登陆：v1/supervisors/login",
+			"description": "",
+			"collectionId": "3bc16bb6-5a9f-8d47-522b-36af58380477",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "babd4391-0502-8699-705e-cb255b59845d",
+			"headers": "",
+			"url": "http://www.0km.me:9000/v1/promotioners/login",
+			"pathVariables": {},
+			"preRequestScript": "",
+			"method": "POST",
+			"data": [
+				{
+					"key": "username",
+					"value": "1212",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "1212",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"name": "地推登陆：v1/promotioners/login ",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1408464897851,
+			"version": 2,
+			"responses": [],
+			"tests": "",
+			"collectionId": "3bc16bb6-5a9f-8d47-522b-36af58380477",
+			"synced": false,
+			"isFromCollection": true,
+			"collectionRequestId": "b597c410-ecb1-fcbb-e1d9-08b059a9da75"
+		},
+		{
+			"id": "bcaf3675-49f1-ea80-6f1d-665f41fa7245",
+			"headers": "",
+			"url": "http://www.0km.me:9000/v1/restaurants/1/menu",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "username",
+					"value": "554155",
+					"type": "text"
+				},
+				{
+					"key": "password",
+					"value": "4155",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1410411039534,
+			"name": "*读取菜单：v1/restaurants/:id/menu",
+			"description": "*表示所有人",
+			"collectionId": "3bc16bb6-5a9f-8d47-522b-36af58380477",
+			"responses": [],
+			"synced": false
+		},
+		{
+			"id": "d34a9597-ca20-9fd5-db10-9da056b4f227",
+			"headers": "",
+			"url": "http://www.0km.me:9000/v1/menus",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "access_token",
+					"value": "c25af2ef-292d-4aa2-9c55-c583c765fb5d:1CxV32nF7lK1tKX%2BfaL%2B24ZSSX0%3D:%7B%0A%20%20%22device%22%20%3A%201,%0A%20%20%22deadline%22%20%3A%201409507415%0A%7D",
+					"type": "text"
+				},
+				{
+					"key": "menu_json",
+					"value": "{\"菜品一\":{\"青菜\":{\"price\":\"3.00\"},\"白菜\":{\"price\":\"2:00\"}},\"菜品二\":{\"紫菜\":{\"price\":\"2.00\"},\"花菜\":{\"price\":\"1:00\"}}}",
+					"type": "text"
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"time": 1409407506531,
+			"name": "餐厅管理员创建菜单：v1/menus",
+			"description": "",
+			"collectionId": "3bc16bb6-5a9f-8d47-522b-36af58380477",
+			"responses": [],
+			"synced": false
+		}
+	]
+}

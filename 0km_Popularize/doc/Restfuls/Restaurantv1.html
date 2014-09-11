@@ -129,6 +129,8 @@
 <h1 id="method-i-restaurants-label-%E6%93%8D%E4%BD%9C">操作<span><a href="#method-i-restaurants-label-%E6%93%8D%E4%BD%9C">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
 <ul><li>
 <p>创建餐馆</p>
+</li><li>
+<p>读取餐馆菜单</p>
 </li></ul>
 
 <h2 id="method-i-restaurants-label-%E5%88%9B%E5%BB%BA%E9%A4%90%E9%A6%86">创建餐馆<span><a href="#method-i-restaurants-label-%E5%88%9B%E5%BB%BA%E9%A4%90%E9%A6%86">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
@@ -228,6 +230,73 @@
 <h6 id="method-i-restaurants-label-501%3A">501:<span><a href="#method-i-restaurants-label-501%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
 
 <pre>数据存储错误</pre>
+
+<h2 id="method-i-restaurants-label-%E8%AF%BB%E5%8F%96%E9%A4%90%E9%A6%86%E8%8F%9C%E5%8D%95">读取餐馆菜单<span><a href="#method-i-restaurants-label-%E8%AF%BB%E5%8F%96%E9%A4%90%E9%A6%86%E8%8F%9C%E5%8D%95">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<pre>读取指定餐馆的菜单</pre>
+
+<h4 id="method-i-restaurants-label-GET">GET<span><a href="#method-i-restaurants-label-GET">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<pre>restaurants/:id/menu</pre>
+
+<h4 id="method-i-restaurants-label-Params">Params<span><a href="#method-i-restaurants-label-Params">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<h6 id="method-i-restaurants-label-%3Aid">:id<span><a href="#method-i-restaurants-label-%3Aid">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>餐馆的id</pre>
+
+<h4 id="method-i-restaurants-label-Response+Status+Code">Response Status Code<span><a href="#method-i-restaurants-label-Response+Status+Code">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<pre>200</pre>
+
+<h4 id="method-i-restaurants-label-Response+Body">Response Body<span><a href="#method-i-restaurants-label-Response+Body">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<h6 id="method-i-restaurants-label-type_name%3A">type_name:<span><a href="#method-i-restaurants-label-type_name%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>菜品种类名</pre>
+
+<h6 id="method-i-restaurants-label-foods%3A">foods:<span><a href="#method-i-restaurants-label-foods%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<h6 id="method-i-restaurants-label-food_name%3A">food_name:<span><a href="#method-i-restaurants-label-food_name%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>菜名</pre>
+
+<h6 id="method-i-restaurants-label-shop_price%3A">shop_price:<span><a href="#method-i-restaurants-label-shop_price%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h6>
+
+<pre>销售价格</pre>
+
+<h4 id="method-i-restaurants-label-Response+Body+Example%3A">Response Body Example:<span><a href="#method-i-restaurants-label-Response+Body+Example%3A">&para;</a> <a href="#documentation">&uarr;</a></span></h4>
+
+<pre>[
+   {
+        &quot;type_name&quot;:&quot;菜品二&quot;,
+        &quot;foods&quot;:
+        [
+                {
+                        &quot;food_name&quot;:&quot;翔啊&quot;,
+                        &quot;shop_price&quot;:&quot;3.0&quot;
+                },
+                {
+                        &quot;food_name&quot;:&quot;鐧借彍&quot;,
+                        &quot;shop_price&quot;:&quot;2.0&quot;
+                }
+        ]
+         },
+ {
+        &quot;type_name&quot;:&quot;翔类&quot;,
+        &quot;foods&quot;:
+        [
+                {
+                        &quot;food_name&quot;:&quot;好菜&quot;,
+                        &quot;shop_price&quot;:&quot;2.0&quot;
+                },
+                {
+                        &quot;food_name&quot;:&quot;花菜&quot;,
+                        &quot;shop_price&quot;:&quot;1.0&quot;
+                }
+        ]
+ }
+]</pre>
           
           
 
